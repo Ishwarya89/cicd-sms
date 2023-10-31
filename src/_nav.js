@@ -18,7 +18,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Student Management',
-        to: '/Studentmanagement/StudentDetails',
+        to: '/Studentmanagement',
       },
       {
         component: CNavItem,
@@ -38,12 +38,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Tcwithdrawal',
-        to: '/base/collapses',
+        to: '/Tcwithdrawal',
       },
       {
         component: CNavItem,
         name: 'Class Section',
-        to: '/base/collapses',
+        to: '/ClassSection',
       },
     ],
   },
