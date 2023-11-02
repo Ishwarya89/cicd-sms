@@ -8,6 +8,9 @@ const WidgetsDropdown = () => {
   const handleStudentManagementClick = () => {
     navigateer('/Studentmanagement')
   }
+  const handlePromotionClick = () => {
+    navigateer('/Promotion')
+  }
   return (
     <CRow>
       <CCol sm={6} lg={3}>
@@ -199,6 +202,7 @@ const WidgetsDropdown = () => {
           className="mb-4"
           color="danger"
           title="Promotion"
+          onClick={handlePromotionClick}
           chart={
             <CChartBar
               className="mt-3 mx-3"
