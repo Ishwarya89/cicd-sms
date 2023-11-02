@@ -23,7 +23,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Staff Managment',
-        to: '/base/breadcrumbs',
+        to: '/Staffmanagement',
       },
       {
         component: CNavItem,
@@ -56,7 +56,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Fees Structure',
-        to: '/buttons/buttons',
+        to: '/Feesstructure',
       },
       {
         component: CNavItem,
