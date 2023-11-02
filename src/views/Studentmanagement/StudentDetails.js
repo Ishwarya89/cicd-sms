@@ -1,247 +1,88 @@
-// import React from 'react'
-// import { AiOutlineOrderedList } from 'react-icons/ai'
-// import { BiPlusMedical } from 'react-icons/bi'
-// import { FaRegEdit, FaSearch, FaUpload } from 'react-icons/fa'
-// import { RiDeleteBin6Line } from 'react-icons/ri'
-// import DataTable from 'react-data-table-component'
-// import { useNavigate, Link } from 'react-router-dom'
-// import Popup from 'reactjs-popup'
-// import { useParams } from 'react-router'
-
-// const customStyles = {
-//   headRow: {
-//     style: {
-//       borderTopStyle: 'solid',
-//       borderTopWidth: '1px',
-//       borderTopColor: 'rgba(0,0,0,.12)',
-//       borderBottomStyle: 'solid',
-//       borderColor: 'rgba(0,0,0,.17)',
-//       borderBottomWidth: '3px',
-//       minHeight: '35px',
-//       backgroundColor: ' #fff',
-//     },
-//   },
-//   headCells: {
-//     style: {
-//       fontSize: '13px',
-//       fontWeight: '600',
-//       textTransform: 'uppercase',
-//       width: '100px',
-//     },
-//   },
-//   cells: {
-//     style: {
-//       fontSize: '12px',
-
-//       width: '100px',
-//     },
-//   },
-//   rows: {
-//     style: {
-//       border: '5px black',
-//       minHeight: '35px',
-
-//       '&:nth-child(even)': {
-//         backgroundColor: ' rgba(0,0,0,.08)',
-//       },
-//       '&:nth-child(odd)': {
-//         backgroundColor: ' rgba(0,0,0,0)',
-//       },
-//       '&:hover': { backgroundColor: 'rgba(0,0,0,.08)' },
-//     },
-//   },
-// }
-
-// const StudentDetails = () => {
-//   const navigateer = useNavigate()
-
-//   function gotoHome() {
-//     navigateer('/')
-//   }
-
-//   function gotoProduct1() {
-//     navigateer('/Add')
-//   }
-
-//   const { id } = useParams()
-//   console.log(id)
-
-//   const columns = [
-//     {
-//       name: 'id',
-//       selector: (row) => row.id,
-//       sortable: true,
-//     },
-//     {
-//       name: 'emis_number',
-//       selector: (row) => row.emis_number,
-//       sortable: true,
-//     },
-//     {
-//       name: 'student_name',
-//       selector: (row) => row.student_name,
-//       sortable: true,
-//     },
-//     {
-//       name: 'date_of_joining',
-//       selector: (row) => row.date_of_joining,
-//       sortable: true,
-//     },
-//     {
-//       name: 'admission_number',
-//       selector: (row) => row.admission_number,
-//       sortable: true,
-//     },
-//     {
-//       name: 'Actions',
-//       cell: (row) => (
-//         <div className="icons">
-//           <Link to={`/StudentEdit/${row.id}`}>
-//             <div className="icon1">
-//               <FaRegEdit />
-//             </div>
-//           </Link>
-//           <Popup
-//             trigger={
-//               <i className="icon2">
-//                 <RiDeleteBin6Line />
-//               </i>
-//             }
-//           >
-//             {(close) => (
-//               <div>
-//                 <div>Delete this item?</div>
-//                 <button>Yes</button>
-//                 <button onClick={close}>No</button>
-//               </div>
-//             )}
-//           </Popup>
-//         </div>
-//       ),
-//     },
-//   ]
-
-//   return (
-//     <div className="product1">
-//       <div className="studentlink">
-//         <div className="link1">
-//           <p onClick={gotoHome} className="homelink">
-//             Home
-//           </p>
-//           <p>/</p>
-//           <p>StudentDetails</p>
-//         </div>
-//       </div>
-//       <div className="wholecart1">
-//         <div className="productcart1">
-//           <div className="cartcontainer1">
-//             <div className="cont11">
-//               <button className="btn11 " onClick={gotoProduct1}>
-//                 <i>
-//                   <BiPlusMedical />
-//                 </i>{' '}
-//                 Add
-//               </button>
-//               <button className="upload">
-//                 <i>
-//                   <FaUpload />
-//                 </i>{' '}
-//                 Upload
-//               </button>
-//             </div>
-
-//             <div className="searchcont1">
-//               <input type="search" className="searchbtn3" placeholder="Enter website" />{' '}
-//               <div className="searchicon">
-//                 <i>
-//                   <FaSearch />
-//                 </i>
-//                 search
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       <div className="studentdatatable">
-//         <p className="studenttitle">
-//           {' '}
-//           <AiOutlineOrderedList /> Student Details
-//         </p>
-//         <div className="StudenttableBody">
-//           <DataTable columns={columns} customStyles={customStyles} striped={true}></DataTable>
-//         </div>
-//         <div className="row">
-//           <div className="col">
-//             <div className="pagi">
-//               <ul className="pagination">
-//                 <li className="page-items">«</li>
-//                 <li className="page-item disabled">⟨</li>
-//                 <li className="page-item active">1</li>
-//                 <li className="page-item">2</li>
-//                 <li className="page-item">3</li>
-//                 <li className="page-item">4</li>
-//                 <li className="page-item">5</li>
-//                 <li className="page-item">⟩</li>
-//                 <li className="page-items1">»</li>
-//               </ul>
-
-//               <select name="limitPerPage" className="form-control">
-//                 <option value="10">10</option>
-//                 <option value="20">20</option>
-//                 <option value="50">50</option>
-//                 <option value="100">100</option>
-//               </select>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default StudentDetails
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import CIcon from '@coreui/icons-react'
+import { Link } from 'react-router-dom'
 import * as icon from '@coreui/icons'
+
 import {
   CCardBody,
   CInputGroup,
   CFormInput,
   CButton,
   CTable,
+  CCardHeader,
   CTableBody,
   CPagination,
-  CPaginationItem,
   CTableDataCell,
   CTableHead,
+  CPaginationItem,
   CTableHeaderCell,
   CTableRow,
   CCard,
 } from '@coreui/react'
 import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom/dist'
 const StudentDetails = () => {
   const navigateer = useNavigate()
-  function gotoProduct1() {
-    navigateer('/Add')
+  const [offset] = useState(0)
+  const [limit] = useState(10)
+  function gotoAddStudent() {
+    navigateer('/AddStudent')
   }
+
   const [visible, setVisible] = useState(false)
+  const [records, setRecords] = useState([])
+  const [setFilterRecords] = useState([])
+
+  const { id } = useParams()
+  console.log(id)
+  useEffect(() => {
+    const fetchStudentData = () => {
+      axios
+        .get(`http://100.20.130.76:8000/api/student/?offset=${offset}&limit=${limit}/`, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => {
+          setRecords(res.data.results)
+          setFilterRecords(res.data.results)
+        })
+        .catch((err) => console.error(err))
+    }
+    fetchStudentData()
+  }, [offset, limit, setFilterRecords])
+  const handleDelete = (recordId) => {
+    // Filter the records to exclude the one with the specified ID
+    const updatedRecords = records.filter((record) => record.id !== recordId)
+    setRecords(updatedRecords)
+  }
   return (
     <div>
       <CCardBody>
         <div className="d-flex justify-content-between ">
           <div className="d-flex justify-content align-items-center  ">
             <CButton
-              style={{ marginRight: 5, marginBottom: 5 }}
-              color="info"
-              href="#"
-              onClick={gotoProduct1}
+              style={{
+                marginRight: 5,
+                marginBottom: 5,
+                backgroundColor: '#1985AC',
+                color: 'white',
+                border: 'none',
+              }}
+              onClick={gotoAddStudent}
             >
               <CIcon icon={icon.cilUserFollow} size="l" />
               Add
             </CButton>
             <CButton
-              style={{ marginRight: 5, marginBottom: 5 }}
-              color="info"
+              style={{
+                marginRight: 5,
+                marginBottom: 5,
+                backgroundColor: '#1985AC',
+                color: 'white',
+                border: 'none',
+              }}
               onClick={() => setVisible(!visible)}
             >
               <CIcon icon={icon.cilArrowThickFromBottom} size="l" />
@@ -256,79 +97,66 @@ const StudentDetails = () => {
                 style={{ borderRadius: 0 }}
                 placeholder="Enter Website"
               />
-              <CButton color="info" shape="rounded-0">
+              <CButton
+                shape="rounded-0"
+                style={{
+                  backgroundColor: '#1985AC',
+                  color: 'white',
+                  border: 'none',
+                }}
+              >
                 <CIcon icon={icon.cilSearch} size="l" /> search
               </CButton>
             </CInputGroup>
           </div>
         </div>
       </CCardBody>
-      <CCard style={{ height: '27rem', marginBottom: '2rem ' }}>
+      <CCard style={{ height: '27rem', marginBottom: '5rem ' }}>
+        <CCardHeader
+          component="h5"
+          className="d-flex align-items-center"
+          style={{ backgroundColor: 'rgb(198, 197, 192)', borderRadius: 0 }}
+        >
+          <CIcon icon={icon.cilMenu} size="xl" />
+          StudentDetails
+        </CCardHeader>
         <CTable striped>
           <CTableHead>
-            <CTableRow color="info">
-              <CTableHeaderCell scope="row">
-                <CIcon icon={icon.cilMenu} size="l" style={{ marginRight: 5 }} />
-              </CTableHeaderCell>
-              <CTableHeaderCell scope="row"></CTableHeaderCell>
-              <CTableHeaderCell scope="row"></CTableHeaderCell>
-              <CTableHeaderCell scope="row"></CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
-          <CTableHead>
             <CTableRow style={{ borderBottom: 5, color: 'primary' }}>
-              <CTableHeaderCell scope="col">#</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+              <CTableHeaderCell scope="col">id</CTableHeaderCell>
+              <CTableHeaderCell scope="col">EMIS Number</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Student Name</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Date Of Joining</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Admission Number</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Action</CTableHeaderCell>
             </CTableRow>
           </CTableHead>
           <CTableBody>
-            <CTableRow>
-              <CTableHeaderCell scope="row">1</CTableHeaderCell>
-              <CTableDataCell>Mark</CTableDataCell>
-              <CTableDataCell>Otto</CTableDataCell>
-              <CTableDataCell>@mdo</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">2</CTableHeaderCell>
-              <CTableDataCell>Jacob</CTableDataCell>
-              <CTableDataCell>Thornton</CTableDataCell>
-              <CTableDataCell>@fat</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">3</CTableHeaderCell>
-              <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-              <CTableDataCell>@twitter</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">4</CTableHeaderCell>
-              <CTableDataCell colSpan="2">Larry </CTableDataCell>
-              <CTableDataCell>@twitter</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">5</CTableHeaderCell>
-              <CTableDataCell>Jacob</CTableDataCell>
-              <CTableDataCell>Thornton</CTableDataCell>
-              <CTableDataCell>@fat</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">6</CTableHeaderCell>
-              <CTableDataCell colSpan="2">Larry Bird</CTableDataCell>
-              <CTableDataCell>@twitter</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">5</CTableHeaderCell>
-              <CTableDataCell>Jacob</CTableDataCell>
-              <CTableDataCell>Thornton</CTableDataCell>
-              <CTableDataCell>@fat</CTableDataCell>
-            </CTableRow>
-            <CTableRow>
-              <CTableHeaderCell scope="row">5</CTableHeaderCell>
-              <CTableDataCell>Jacob</CTableDataCell>
-              <CTableDataCell>Thornton</CTableDataCell>
-              <CTableDataCell>@fat</CTableDataCell>
-            </CTableRow>
+            {records.map((record, index) => (
+              <CTableRow key={index}>
+                <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
+                <CTableDataCell>{record.emis_number}</CTableDataCell>
+                <CTableDataCell>{record.student_name}</CTableDataCell>
+                <CTableDataCell>{record.date_of_joining}</CTableDataCell>
+                <CTableDataCell>{record.admission_number}</CTableDataCell>
+                <CTableDataCell>
+                  <Link to={`/EditStudent/${record.id}`}>
+                    <CIcon
+                      icon={icon.cilPencil}
+                      size="l"
+                      style={{ marginRight: 8, color: 'rgb(15, 176, 235)' }}
+                    />
+                  </Link>
+                  <CIcon
+                    icon={icon.cilTrash}
+                    size="l"
+                    style={{ marginRight: 8, color: 'red' }}
+                    onClick={() => handleDelete(record.id)}
+                    // Pass the record's ID to the delete function
+                  />
+                </CTableDataCell>
+              </CTableRow>
+            ))}
           </CTableBody>
         </CTable>
       </CCard>
@@ -340,18 +168,42 @@ const StudentDetails = () => {
             style={{ marginBottom: 0, borderRadius: 0 }}
           >
             <CPaginationItem aria-label="Previous" style={{ borderRadius: 0 }}>
-              <span aria-hidden="true">&laquo;</span>
+              <span
+                aria-hidden="true"
+                style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}
+              >
+                &laquo;
+              </span>
             </CPaginationItem>
             <CPaginationItem aria-label="Previous">
-              <span aria-hidden="true">&lsaquo;</span>
+              <span
+                aria-hidden="true"
+                style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}
+              >
+                &lsaquo;
+              </span>
             </CPaginationItem>
-            <CPaginationItem active>1</CPaginationItem>
-            <CPaginationItem>2</CPaginationItem>
-            <CPaginationItem>3</CPaginationItem>
+            <CPaginationItem>
+              <span style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}>1</span>{' '}
+            </CPaginationItem>
+            <CPaginationItem>
+              <span style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}>2</span>
+            </CPaginationItem>
+            <CPaginationItem>
+              <span style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}>3</span>
+            </CPaginationItem>
             <CPaginationItem aria-label="Next">
-              <span aria-hidden="true">&rsaquo;</span>
+              <span
+                aria-hidden="true"
+                style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}
+              >
+                &rsaquo;
+              </span>
             </CPaginationItem>
-            <CPaginationItem aria-label="Next" style={{ borderRadius: 0 }}>
+            <CPaginationItem
+              aria-label="Next"
+              style={{ borderRadius: 0, backgroundColor: 'white', color: '#1985AC' }}
+            >
               <span aria-hidden="true">&raquo;</span>
             </CPaginationItem>
           </CPagination>
