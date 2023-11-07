@@ -28,12 +28,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Attendance',
-        to: '/base/cards',
+        to: '/AttendanceDetails/AttendanceDetails',
       },
       {
         component: CNavItem,
         name: 'Promotion',
-        to: '/base/carousels',
+        to: '/Promotion',
       },
       {
         component: CNavItem,
@@ -61,7 +61,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Fees Collection',
-        to: '/buttons/button-groups',
+        to: '/FeesCollection/FeesCollection',
       },
     ],
   },
