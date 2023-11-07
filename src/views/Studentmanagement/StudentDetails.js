@@ -70,8 +70,8 @@ const StudentDetails = () => {
   }
 
   const handleDownload = () => {
-    // Simulate downloading CSV data (replace with your actual API endpoint)
-    const apiUrl = 'https://jsonplaceholder.typicode.com/posts'
+    // Simulate downloading CSV data
+    const apiUrl = 'http://100.20.130.76:8000/api/student/'
     const requestData = {
       academic_year: formData.academic_year,
       standard: formData.standard,
