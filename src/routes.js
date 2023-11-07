@@ -16,7 +16,11 @@ const AddFees = React.lazy(() => import('./views/Feesstructure/AddFees'))
 const EditFees = React.lazy(() => import('./views/Feesstructure/EditFees'))
 const Promotion = React.lazy(() => import('./views/Promotion/Promotion'))
 const PromotionDetails = React.lazy(() => import('./views/Promotion/PromotionDetails'))
-
+const AttendanceDetails = React.lazy(() => import('./views/AttendanceDetails/AttendanceDetails'))
+const AddAttendance = React.lazy(() => import('./views/AttendanceDetails/AddAttendance'))
+const EditAttendance = React.lazy(() => import('./views/AttendanceDetails/EditAttendance'))
+const FeesCollection = React.lazy(() => import('./views/FeesCollection/FeesCollection'))
+const FeesInfo = React.lazy(() => import('./views/FeesCollection/FeesInfo'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -35,6 +39,31 @@ const routes = [
   { path: '/EditFees', name: 'EditFees', element: EditFees },
   { path: '/Promotion', name: 'Promotion', element: Promotion },
   { path: '/PromotionDetails', name: 'PromotionDetails', element: PromotionDetails },
+  {
+    path: '/AttendanceDetails/AttendanceDetails',
+    name: 'AttendanceDetails',
+    element: AttendanceDetails,
+  },
+  {
+    path: '/AttendanceDetails/AddAttendance',
+    name: 'AddAttendance',
+    element: AddAttendance,
+  },
+  {
+    path: '/AttendanceDetails/EditAttendance',
+    name: 'EditAttendance',
+    element: EditAttendance,
+  },
+  {
+    path: 'FeesCollection/FeesCollection',
+    name: 'FeesCollection',
+    element: FeesCollection,
+  },
+  {
+    path: 'FeesCollection/FeesInfo',
+    name: 'FeesInfo',
+    element: FeesInfo,
+  },
 ]
 
 export default routes

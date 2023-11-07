@@ -11,7 +11,16 @@ import {
   CTable,
   CCardHeader,
   CCard,
+  CModal,
+  CModalBody,
+  CModalHeader,
+  CForm,
+  CModalTitle,
+  CCol,
+  CFormLabel,
+  CFormSelect,
   CRow,
+  CModalFooter,
   CPagination,
 } from '@coreui/react'
 import { useNavigate } from 'react-router-dom'
@@ -45,17 +54,40 @@ const Tcwithdrawal = () => {
       navigate('/Tcwithinfo', { state: { dataToPass } })
     }
   }
+  const handleDownload = () => {
+    // Simulate downloading CSV data (replace with your actual API endpoint)
+    const apiUrl = 'https://jsonplaceholder.typicode.com/posts'
+    const requestData = {
+      
+    }
 
+    axios.get(apiUrl, { params: requestData }).then((response) => {
+      const csvData = response.data.map((record) => {
+        // Format your data into CSV format
+        return `${record.id}, ${record.title}, ${record.body}`
+      })
+
+      // Create a CSV blob and initiate download
+      const csvBlob = new Blob([csvData.join('\n')], { type: 'text/csv' })
+      const url = window.URL.createObjectURL(csvBlob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'student_data.csv'
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+    })
+  }
   useEffect(() => {
     axios
-      .get(`http://100.20.130.76:8000/api/tc_withdraw/?offset=${offset}&limit=${limit}`, {
+      .get(`https://jsonplaceholder.typicode.com/users`, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
       .then((res) => {
-        setRecords(res.data.results)
-        setFilterRecords(res.data.results)
+        setRecords(res.data)
+        setFilterRecords(res.data)
         setTotalItemCount(res.data.total)
       })
       .catch((err) => console.error(err))
@@ -64,14 +96,15 @@ const Tcwithdrawal = () => {
   function handleFilter(event) {
     const newData = filterRecords.filter(
       (row) =>
-        (row.student_name &&
-          row.student_name.toLowerCase().includes(event.target.value.toLowerCase())) ||
+        (row.name &&
+          row.name.toLowerCase().includes(event.target.value.toLowerCase())) ||
         (row.admission_number &&
           row.admission_number.toString().toLowerCase().includes(event.target.value.toLowerCase())),
     )
     setRecords(newData)
   }
 
+ 
   const handlePageChange = (pageNumber) => {
     console.log(`active page is ${pageNumber}`)
     setActivePage(pageNumber)
@@ -85,7 +118,7 @@ const Tcwithdrawal = () => {
     setActivePage(1)
     setOffset(0)
   }
-
+  const [visible, setVisible] = useState(false)
   return (
     <div>
       <CCardBody>
@@ -113,8 +146,80 @@ const Tcwithdrawal = () => {
               >
                 Submit
               </CButton>
+              <CButton shape="rounded-0" style={{ marginLeft: 5,border: 'none', backgroundColor: '#1985AC' }} onClick={() => setVisible(!visible)}>
+            <CIcon icon={icon.cilVerticalAlignBottom} size="l" />Download</CButton>
             </CInputGroup>
+            <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>Download SCV</CModalTitle>
+        </CModalHeader>
+        <CModalBody> 
+        <CForm className="row g-2 "style={{marginLeft: 20,marginRight:20}} >
+           
+          <CCol xs={3}  style={{marginRight:40,}}>
+          <CFormLabel
+                htmlFor="inputState"
+                style={{  fontWeight: '500', fontSize: '16px' }}
+              >
+                 Class
+              </CFormLabel>
+              <CFormSelect
+                      id="standard"
+                      name="standard"
+                      value={formData.standard}
+                      onChange={handleInputChange}
+                    >
+                      <option value=""></option>
+                      <option value="LKG">LKG</option>
+                      <option value="UKG">UKG</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </CFormSelect>
+          </CCol>
+          <CCol xs={3}  style={{marginLeft:75}}>
+          <CFormLabel
+                htmlFor="inputState"
+                style={{  fontWeight: '500', fontSize: '16px' }}
+              >
+                 Section
+              </CFormLabel>
+              <CFormSelect
+                      id="section"
+                      name="section"
+                      value={formData.section}
+                      onChange={handleInputChange}
+                    >
+                      <option value=""></option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                      <option value="F">F</option>
+                      <option value="G">G</option>
+                      <option value="H">H</option>
+                      <option value="I">I</option>
+                    </CFormSelect>
+          </CCol>
+          </CForm></CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" >
+          <CIcon icon={icon.cilVerticalAlignBottom} size="l" onClick={handleDownload}/>
+            Download
+          </CButton>
+          
+        </CModalFooter>
+      </CModal>
           </div>
+         
           <div className="d-flex justify-content align-items-center">
             <CInputGroup className="mb-1" shape="rounded-0">
               <CFormInput
@@ -161,7 +266,7 @@ const Tcwithdrawal = () => {
               {records.map((record, index) => (
                 <tr key={index}>
                   <td>{record.admission_number}</td>
-                  <td>{record.student_name}</td>
+                  <td>{record.name}</td>
                   <td>{record.current_class}</td>
                   <td>{record.current_section}</td>
                   <td>{record.fathers_name}</td>
