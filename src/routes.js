@@ -55,12 +55,12 @@ const routes = [
     element: EditAttendance,
   },
   {
-    path: 'FeesCollection/FeesCollection',
+    path: '/FeesCollection',
     name: 'FeesCollection',
     element: FeesCollection,
   },
   {
-    path: 'FeesCollection/FeesInfo',
+    path: '/FeesInfo',
     name: 'FeesInfo',
     element: FeesInfo,
   },
