@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { React, useState, useEffect } from 'react'
 import * as icon from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import axios from 'axios'
 import {
+
   CButton,
   CCardBody,
   CFormSelect,
@@ -19,6 +21,11 @@ import {
   CTableBody,
   CTableDataCell,
   CRow,
+  CModal,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
+  CModalBody,
 } from '@coreui/react'
 import { useNavigate } from 'react-router-dom'
 const AttendanceDetails = () => {
@@ -39,13 +46,18 @@ const AttendanceDetails = () => {
       [name]: value,
     })
   }
+  const [records, setRecords] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
   const [errorDisplayDuration] = useState(2000)
+  const [visible, setVisible] = useState(false)
+  const [filterRecords, setFilterRecords] = useState([])
+  const [classFilter, setClassFilter] = useState(''); // Store class filter
+const [sectionFilter, setSectionFilter] = useState(''); // Store section filter
 
   function handlesubmit() {
     if (formData.from_academic_year && formData.from_class && formData.from_section) {
       const dataToPass = formData
-      navigate('/AddAttendance', { state: { dataToPass } })
+      navigate('/AttendanceDetails/AddAttendance', { state: { dataToPass } })
     } else {
       if (!formData.from_academic_year) {
         setErrorMessage('Please fill out all required fields before searching.')
@@ -68,16 +80,72 @@ const AttendanceDetails = () => {
       }
     }
   }
+  const handleDownload = () => {
+    // Simulate downloading CSV data (replace with your actual API endpoint)
+    const apiUrl = 'https://jsonplaceholder.typicode.com/posts'
+    const requestData = {
+      
+    }
 
+    axios.get(apiUrl, { params: requestData }).then((response) => {
+      const csvData = response.data.map((record) => {
+        // Format your data into CSV format
+        return `${record.id}, ${record.title}, ${record.body}`
+      })
+
+      // Create a CSV blob and initiate download
+      const csvBlob = new Blob([csvData.join('\n')], { type: 'text/csv' })
+      const url = window.URL.createObjectURL(csvBlob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'student_attendance_data.csv'
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+    })
+  }
   useEffect(() => {
     axios
-      .get('https://jsonplaceholder.typicode.com/users')
-      .then((res) => {
-        setRecords(res.data)
+      .get(`https://jsonplaceholder.typicode.com/users`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch((err) => console.error(err))
-  }, [])
-  const [records, setRecords] = useState([])
+      .then((res) => {
+        setFilterRecords(res.data);
+        filterData(classFilter, sectionFilter); // Apply the initial filters
+      })
+      .catch((err) => console.error(err));
+  }, ); // Add classFilter and sectionFilter as dependencies
+  
+  const filterData = (selectedClass, selectedSection) => {
+    const newData = filterRecords.filter((row) => {
+      // Check if the selected class matches or it's empty
+      const classMatch = !selectedClass || row.name === selectedClass;
+    
+      // Check if the selected section matches or it's empty
+      const sectionMatch = !selectedSection || row.section === selectedSection;
+    
+      return classMatch && sectionMatch;
+    });
+  
+    setRecords(newData);
+  };
+ 
+
+  // Handle class filter change
+  const handleClassFilterChange = (event) => {
+    setClassFilter(event.target.value);
+    filterData(event.target.value, sectionFilter);
+  };
+  
+  // Handle section filter change
+  const handleSectionFilterChange = (event) => {
+    setSectionFilter(event.target.value);
+    filterData(classFilter, event.target.value);
+  };
+  
+  
   return (
     <>
       <CCard style={{ borderRadius: 0, marginBottom: 20 }}>
@@ -90,7 +158,7 @@ const AttendanceDetails = () => {
         </CCardHeader>
         <CCardBody style={{ marginTop: 20 }}>
           <CForm className="row g-3">
-            <CCol xs={2} style={{ marginRight: 70, marginLeft: 40 }}>
+            <CCol xs={2} style={{ marginRight: 60, marginLeft: 40 }}>
               <CFormLabel
                 htmlFor="inputState"
                 style={{ color: 'rgb(15, 176, 235)', fontWeight: '500', fontSize: '16px' }}
@@ -112,7 +180,7 @@ const AttendanceDetails = () => {
                 <option>2022-2023</option>
               </CFormSelect>
             </CCol>
-            <CCol xs={2} style={{ marginRight: 70 }}>
+            <CCol xs={2} style={{ marginRight: 60 }}>
               <CFormLabel
                 htmlFor="inputState"
                 style={{ color: 'rgb(15, 176, 235)', fontWeight: '500', fontSize: '16px' }}
@@ -134,7 +202,7 @@ const AttendanceDetails = () => {
                 <option>5</option>
               </CFormSelect>
             </CCol>
-            <CCol xs={2} style={{ marginRight: 70 }}>
+            <CCol xs={2} style={{ marginRight: 50 }}>
               <CFormLabel
                 htmlFor="inputState"
                 style={{ color: 'rgb(15, 176, 235)', fontWeight: '500', fontSize: '16px' }}
@@ -155,14 +223,18 @@ const AttendanceDetails = () => {
                 <option>E</option>
               </CFormSelect>
             </CCol>
-            <CCol xs={2}>
+            <CCol xs={2} className='d-flex justify-content-between' style={{
+                  width:250,
+                  
+                }}>
               <CButton
                 type="submit"
                 onClick={handlesubmit}
                 style={{
-                  marginTop: 30,
-                  marginLeft: 40,
-                  width: 120,
+                  marginright:20,
+                 height:40,
+                 width:100,
+                 marginTop:30,
                   backgroundColor: '#1985AC',
                   color: 'white',
                   border: 'none',
@@ -170,12 +242,97 @@ const AttendanceDetails = () => {
               >
                 <CIcon icon={icon.cilSearch} size="l" /> Search
               </CButton>
+              <CButton
+               
+               onClick={() => setVisible(!visible)}
+                style={{
+                  height:40,
+                  marginTop:30,
+               width:130,
+                  backgroundColor: '#1985AC',
+                  color: 'white',
+                  border: 'none',
+                }}
+              >
+                <CIcon icon={icon.cilVerticalAlignBottom} size="l" /> Download
+              </CButton>
+              <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader>
+          <CModalTitle>Download SCV</CModalTitle>
+        </CModalHeader>
+        <CModalBody> 
+        <CForm className="row g-2 "style={{marginLeft: 20,marginRight:20}} >
+           
+        <CCol xs={3}  style={{marginRight:40,}}>
+          <CFormLabel
+                htmlFor="inputState"
+                style={{  fontWeight: '500', fontSize: '16px' }}
+              >
+                 Class
+              </CFormLabel>
+              <CFormSelect
+                      id="classFilter"
+                      value={classFilter}
+                      onChange={handleClassFilterChange}
+                    >
+                      <option value=""></option>
+                      <option value="Leanne Graham">Leanne Graham</option>
+                      <option value="UKG">UKG</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </CFormSelect>
+          </CCol>
+          <CCol xs={3}  style={{marginLeft:75}}>
+          <CFormLabel
+                htmlFor="inputState"
+                style={{  fontWeight: '500', fontSize: '16px' }}
+              >
+                 Section
+              </CFormLabel>
+              <CFormSelect
+                     id="sectionFilter"
+                     value={sectionFilter}
+                     onChange={handleSectionFilterChange}
+                    >
+                      <option value=""></option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                      <option value="F">F</option>
+                      <option value="G">G</option>
+                      <option value="H">H</option>
+                      <option value="I">I</option>
+                    </CFormSelect>
+          </CCol>
+          </CForm></CModalBody>
+        <CModalFooter>
+          <CButton color="secondary"onClick={handleDownload} >
+          <CIcon icon={icon.cilVerticalAlignBottom} size="l" />
+            Download
+          </CButton>
+          
+        </CModalFooter>
+      </CModal>
             </CCol>
+            
+              
+           
             {errorMessage && (
               <div className="ErrorMessage">
                 <p className="error-message">{errorMessage}</p>
               </div>
             )}
+            
           </CForm>
         </CCardBody>
       </CCard>
@@ -215,7 +372,7 @@ const AttendanceDetails = () => {
                   <CTableRow key={index}>
                     <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
                     <CTableDataCell>{record.emis_number}</CTableDataCell>
-                    <CTableDataCell>{record.student_name}</CTableDataCell>
+                    <CTableDataCell>{record.name}</CTableDataCell>
                     <CTableDataCell>{record.date_of_joining}</CTableDataCell>
                     <CTableDataCell>{record.date_of_joining}</CTableDataCell>
                     <CTableDataCell>{record.date_of_joining}</CTableDataCell>

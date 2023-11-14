@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { React, useState, useEffect } from 'react'
 import CIcon from '@coreui/icons-react'
 import * as icon from '@coreui/icons'
@@ -288,7 +289,7 @@ const PromotionDetails = () => {
                   <CCol xs="auto">
                     <CFormLabel
                       htmlFor="academic_year"
-                      style={{ color: 'rgb(15, 176, 235)', fontWeight: '500', fontSize: '16px' }}
+                      style={{ fontWeight: '500', fontSize: '16px' }}
                     >
                       Academic Year
                     </CFormLabel>
@@ -310,7 +311,7 @@ const PromotionDetails = () => {
                   <CCol xs="auto">
                     <CFormLabel
                       htmlFor="standard"
-                      style={{ color: 'rgb(15, 176, 235)', fontWeight: '500', fontSize: '16px' }}
+                      style={{ fontWeight: '500', fontSize: '16px' }}
                     >
                       Standard
                     </CFormLabel>
@@ -338,7 +339,7 @@ const PromotionDetails = () => {
                   <CCol xs="auto">
                     <CFormLabel
                       htmlFor="section"
-                      style={{ color: 'rgb(15, 176, 235)', fontWeight: '500', fontSize: '16px' }}
+                      style={{ fontWeight: '500', fontSize: '16px' }}
                     >
                       Section
                     </CFormLabel>
@@ -363,7 +364,8 @@ const PromotionDetails = () => {
                 </CForm>
               </CModalBody>
               <CModalFooter>
-                <CButton color="primary" onClick={handleDownload}>
+                <CButton color="secondary" onClick={handleDownload}>
+                <CIcon icon={icon.cilVerticalAlignBottom} size="l" />
                   Download
                 </CButton>
               </CModalFooter>

@@ -15,7 +15,7 @@ const WidgetsDropdown = () => {
     navigateer('/AttendanceDetails/AttendanceDetails')
   }
   const handleFeesClick = () => {
-    navigateer('/FeesCollection/FeesCollection')
+    navigateer('/FeesCollection')
   }
   return (
     <CRow>

@@ -33,6 +33,9 @@ const Tcwithdrawal = () => {
   const [totalItemCount, setTotalItemCount] = useState(0)
   const [activePage, setActivePage] = useState(1)
   const navigate = useNavigate()
+  const [classFilter, setClassFilter] = useState(''); // Store class filter
+const [sectionFilter, setSectionFilter] = useState(''); // Store section filter
+
 
   const [formData, setFormData] = useState({
     admission_number: '',
@@ -54,7 +57,7 @@ const Tcwithdrawal = () => {
       navigate('/Tcwithinfo', { state: { dataToPass } })
     }
   }
-  const handleDownload = () => {
+const handleDownload = () => {
     // Simulate downloading CSV data (replace with your actual API endpoint)
     const apiUrl = 'https://jsonplaceholder.typicode.com/posts'
     const requestData = {
@@ -72,7 +75,7 @@ const Tcwithdrawal = () => {
       const url = window.URL.createObjectURL(csvBlob)
       const a = document.createElement('a')
       a.href = url
-      a.download = 'student_data.csv'
+      a.download = 'student_tc_data.csv'
       document.body.appendChild(a)
       a.click()
       window.URL.revokeObjectURL(url)
@@ -92,6 +95,31 @@ const Tcwithdrawal = () => {
       })
       .catch((err) => console.error(err))
   }, [limit, offset])
+  const filterData = (selectedClass, selectedSection) => {
+    const newData = filterRecords.filter((row) => {
+      // Check if the selected class matches or it's empty
+      const classMatch = !selectedClass || row.name === selectedClass;
+  
+      // Check if the selected section matches or it's empty
+      const sectionMatch = !selectedSection || row.section === selectedSection;
+  
+      return classMatch && sectionMatch;
+    });
+  
+    setRecords(newData);
+  };
+  
+// Handle class filter change
+const handleClassFilterChange = (event) => {
+  setClassFilter(event.target.value);
+  filterData(event.target.value, sectionFilter);
+};
+
+// Handle section filter change
+const handleSectionFilterChange = (event) => {
+  setSectionFilter(event.target.value);
+  filterData(classFilter, event.target.value);
+};
 
   function handleFilter(event) {
     const newData = filterRecords.filter(
@@ -104,7 +132,6 @@ const Tcwithdrawal = () => {
     setRecords(newData)
   }
 
- 
   const handlePageChange = (pageNumber) => {
     console.log(`active page is ${pageNumber}`)
     setActivePage(pageNumber)
@@ -164,13 +191,12 @@ const Tcwithdrawal = () => {
                  Class
               </CFormLabel>
               <CFormSelect
-                      id="standard"
-                      name="standard"
-                      value={formData.standard}
-                      onChange={handleInputChange}
+                      id="classFilter"
+                      value={classFilter}
+                      onChange={handleClassFilterChange}
                     >
                       <option value=""></option>
-                      <option value="LKG">LKG</option>
+                      <option value="Leanne Graham">Leanne Graham</option>
                       <option value="UKG">UKG</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -192,10 +218,9 @@ const Tcwithdrawal = () => {
                  Section
               </CFormLabel>
               <CFormSelect
-                      id="section"
-                      name="section"
-                      value={formData.section}
-                      onChange={handleInputChange}
+                     id="sectionFilter"
+                     value={sectionFilter}
+                     onChange={handleSectionFilterChange}
                     >
                       <option value=""></option>
                       <option value="A">A</option>
@@ -211,8 +236,8 @@ const Tcwithdrawal = () => {
           </CCol>
           </CForm></CModalBody>
         <CModalFooter>
-          <CButton color="secondary" >
-          <CIcon icon={icon.cilVerticalAlignBottom} size="l" onClick={handleDownload}/>
+          <CButton color="secondary" onClick={handleDownload}>
+          <CIcon icon={icon.cilVerticalAlignBottom} size="l" />
             Download
           </CButton>
           
@@ -266,8 +291,8 @@ const Tcwithdrawal = () => {
               {records.map((record, index) => (
                 <tr key={index}>
                   <td>{record.admission_number}</td>
+                  <td>{record.student_name}</td>
                   <td>{record.name}</td>
-                  <td>{record.current_class}</td>
                   <td>{record.current_section}</td>
                   <td>{record.fathers_name}</td>
                   <td>{record.mothers_name}</td>
