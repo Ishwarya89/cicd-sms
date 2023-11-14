@@ -5,7 +5,6 @@ import * as icon from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import axios from 'axios'
 import {
-
   CButton,
   CCardBody,
   CFormSelect,
