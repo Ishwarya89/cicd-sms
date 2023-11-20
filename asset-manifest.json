@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/cicd-sms/static/js/main.11e80a17.js",
+    "static/js/496.de11de8b.chunk.js": "/cicd-sms/static/js/496.de11de8b.chunk.js",
+    "index.html": "/cicd-sms/index.html",
+    "main.11e80a17.js.map": "/cicd-sms/static/js/main.11e80a17.js.map",
+    "496.de11de8b.chunk.js.map": "/cicd-sms/static/js/496.de11de8b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.11e80a17.js"
+  ]
+}
