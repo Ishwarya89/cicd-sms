@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './scss/style.scss'
 
-const loading = <h1>learn react</h1>
+const loading = <p>learn react</p>
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
