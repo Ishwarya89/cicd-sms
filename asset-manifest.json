@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cicd-sms/static/css/main.5f27c388.css",
-    "main.js": "/cicd-sms/static/js/main.0c58ca12.js",
+    "main.js": "/cicd-sms/static/js/main.778d3e20.js",
     "static/css/803.f9d47aa9.chunk.css": "/cicd-sms/static/css/803.f9d47aa9.chunk.css",
     "static/js/803.4b33452c.chunk.js": "/cicd-sms/static/js/803.4b33452c.chunk.js",
     "static/js/24.7062fa46.chunk.js": "/cicd-sms/static/js/24.7062fa46.chunk.js",
@@ -9,8 +9,8 @@
     "static/js/1.f0fa5d86.chunk.js": "/cicd-sms/static/js/1.f0fa5d86.chunk.js",
     "static/js/188.3b78c8cd.chunk.js": "/cicd-sms/static/js/188.3b78c8cd.chunk.js",
     "static/js/496.de11de8b.chunk.js": "/cicd-sms/static/js/496.de11de8b.chunk.js",
-    "static/js/915.1510492a.chunk.js": "/cicd-sms/static/js/915.1510492a.chunk.js",
-    "static/js/511.8e6e6930.chunk.js": "/cicd-sms/static/js/511.8e6e6930.chunk.js",
+    "static/js/915.8eec5a57.chunk.js": "/cicd-sms/static/js/915.8eec5a57.chunk.js",
+    "static/js/511.f42a4837.chunk.js": "/cicd-sms/static/js/511.f42a4837.chunk.js",
     "static/js/852.2f77aa46.chunk.js": "/cicd-sms/static/js/852.2f77aa46.chunk.js",
     "static/js/838.45cbd8a5.chunk.js": "/cicd-sms/static/js/838.45cbd8a5.chunk.js",
     "static/js/273.4691f6a0.chunk.js": "/cicd-sms/static/js/273.4691f6a0.chunk.js",
@@ -39,7 +39,7 @@
     "static/media/8.jpg": "/cicd-sms/static/media/8.35ee8919ea545620a475.jpg",
     "index.html": "/cicd-sms/index.html",
     "main.5f27c388.css.map": "/cicd-sms/static/css/main.5f27c388.css.map",
-    "main.0c58ca12.js.map": "/cicd-sms/static/js/main.0c58ca12.js.map",
+    "main.778d3e20.js.map": "/cicd-sms/static/js/main.778d3e20.js.map",
     "803.f9d47aa9.chunk.css.map": "/cicd-sms/static/css/803.f9d47aa9.chunk.css.map",
     "803.4b33452c.chunk.js.map": "/cicd-sms/static/js/803.4b33452c.chunk.js.map",
     "24.7062fa46.chunk.js.map": "/cicd-sms/static/js/24.7062fa46.chunk.js.map",
@@ -47,8 +47,8 @@
     "1.f0fa5d86.chunk.js.map": "/cicd-sms/static/js/1.f0fa5d86.chunk.js.map",
     "188.3b78c8cd.chunk.js.map": "/cicd-sms/static/js/188.3b78c8cd.chunk.js.map",
     "496.de11de8b.chunk.js.map": "/cicd-sms/static/js/496.de11de8b.chunk.js.map",
-    "915.1510492a.chunk.js.map": "/cicd-sms/static/js/915.1510492a.chunk.js.map",
-    "511.8e6e6930.chunk.js.map": "/cicd-sms/static/js/511.8e6e6930.chunk.js.map",
+    "915.8eec5a57.chunk.js.map": "/cicd-sms/static/js/915.8eec5a57.chunk.js.map",
+    "511.f42a4837.chunk.js.map": "/cicd-sms/static/js/511.f42a4837.chunk.js.map",
     "852.2f77aa46.chunk.js.map": "/cicd-sms/static/js/852.2f77aa46.chunk.js.map",
     "838.45cbd8a5.chunk.js.map": "/cicd-sms/static/js/838.45cbd8a5.chunk.js.map",
     "273.4691f6a0.chunk.js.map": "/cicd-sms/static/js/273.4691f6a0.chunk.js.map",
@@ -77,6 +77,6 @@
   },
   "entrypoints": [
     "static/css/main.5f27c388.css",
-    "static/js/main.0c58ca12.js"
+    "static/js/main.778d3e20.js"
   ]
 }
