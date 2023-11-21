@@ -86,10 +86,10 @@ const WidgetsDropdown = () => {
           }
         />
       </CCol>
-      <CCol sm={6} lg={3}>
+      {/* <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          color="primary"
+          color="info"
           title="Staff Management"
           chart={
             <CChartLine
@@ -150,7 +150,7 @@ const WidgetsDropdown = () => {
             />
           }
         />
-      </CCol>
+      </CCol> */}
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
